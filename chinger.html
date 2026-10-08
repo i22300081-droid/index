@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b12">
+<title>CODM_ACCOUNTQ | سفارش تبلیغات</title>
+<style>
+:root{
+  --bg:#08080d;--card:#11111a;--card2:#171722;--line:#28283a;
+  --text:#f5f5fa;--muted:#a9a9bb;--primary:#8b5cf6;--primary2:#6d28d9;
+  --green:#22c55e;--red:#ef4444;--gold:#f59e0b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#1b1230 0,#08080d 38%);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+.container{width:min(1100px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(8,8,13,.88);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:900;font-size:18px}.brand span{color:#b084ff}
+.navlinks{display:flex;gap:8px}
+.btn{border:0;border-radius:13px;padding:12px 16px;cursor:pointer;color:white;background:linear-gradient(135deg,var(--primary),var(--primary2));font-weight:800}
+.btn.secondary{background:var(--card2);border:1px solid var(--line)}
+.btn.green{background:linear-gradient(135deg,#16a34a,#15803d)}
+.btn.red{background:linear-gradient(135deg,#dc2626,#991b1b)}
+.hero{padding:60px 0 35px;text-align:center}
+.badge{display:inline-block;padding:7px 12px;border:1px solid #4b327d;background:#171025;border-radius:99px;color:#cbb3ff;font-size:13px}
+.hero h1{font-size:clamp(30px,7vw,58px);margin:18px 0 12px}
+.hero h1 span{color:#a78bfa}
+.hero p{color:var(--muted);line-height:2;max-width:700px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{background:linear-gradient(180deg,rgba(23,23,34,.95),rgba(14,14,22,.95));border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 15px 50px #0004}
+.card h3{margin-top:0}.price{font-size:25px;font-weight:900;color:#c4a6ff;margin:12px 0}
+.small{font-size:12px;color:var(--muted)}
+.section{padding:25px 0 45px}.section-title{font-size:25px;margin-bottom:18px}
+.tariff{display:flex;flex-direction:column;justify-content:space-between;min-height:185px}
+.tariff .type{color:#d8d8e5;line-height:1.8}
+.order-wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+label{display:block;margin:13px 0 7px;font-size:13px;color:#d5d5df}
+input,textarea,select{width:100%;background:#0c0c13;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:13px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--primary)}
+textarea{min-height:120px;resize:vertical}
+.total{font-size:34px;font-weight:900;color:#c4a6ff}
+.notice{padding:12px;border-radius:12px;background:#191526;border:1px solid #3c2a5c;color:#d9c9ff;font-size:13px;line-height:1.9}
+.orders{display:grid;gap:12px}
+.order{background:#0e0e15;border:1px solid var(--line);border-radius:15px;padding:15px}
+.order-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.status{padding:5px 9px;border-radius:99px;font-size:11px;background:#33250b;color:#fbbf24}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);text-align:center}
+.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.modal.show{display:flex}.modal-box{width:min(520px,100%);background:#11111a;border:1px solid var(--line);border-radius:20px;padding:22px}
+.admin-panel{display:none}.admin-panel.show{display:block}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.kpi{background:#0d0d14;border:1px solid var(--line);padding:15px;border-radius:15px}
+.kpi b{display:block;font-size:25px;margin-top:7px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hidden{display:none!important}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.order-wrap{grid-template-columns:1fr}.navlinks .hide-mobile{display:none}}
+@media(max-width:520px){.grid,.kpis{grid-template-columns:1fr}.hero{padding-top:40px}.nav{height:auto;padding:12px 0}.brand{font-size:15px}}
+</style>
+
+<style id="official-ui">
+:root{
+  --bg:#0b1220;
+  --panel:#111b2e;
+  --panel2:#16233a;
+  --border:#263753;
+  --text:#eef3f9;
+  --muted:#9eacc0;
+  --accent:#3b82f6;
+  --accent2:#2563eb;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --shadow:0 14px 38px rgba(0,0,0,.22);
+}
+body{
+  background:
+    radial-gradient(circle at 15% 0%,rgba(59,130,246,.10),transparent 32%),
+    linear-gradient(180deg,#08101e 0%,#0d1626 100%);
+  color:var(--text);
+}
+.container{max-width:980px}
+.hero,.card,.order,.modal-box,.notice{
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+.hero{
+  background:linear-gradient(145deg,rgba(22,35,58,.96),rgba(13,23,40,.96));
+  border-radius:20px;
+}
+.card,.order{
+  background:rgba(17,27,46,.94);
+  border-radius:16px;
+}
+.section-title{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:-.2px;
+}
+label{
+  color:#cbd5e1;
+  font-weight:700;
+}
+input,select,textarea{
+  background:#0b1526 !important;
+  border:1px solid #2b3b57 !important;
+  color:var(--text) !important;
+  border-radius:11px !important;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--accent) !important;
+  outline:none;
+  box-shadow:0 0 0 3px rgba(59,130,246,.13);
+}
+.btn{
+  border-radius:11px !important;
+  font-weight:800;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.18s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.badge{
+  background:rgba(59,130,246,.12) !important;
+  color:#93c5fd !important;
+  border:1px solid rgba(59,130,246,.25);
+}
+.status{
+  border-radius:999px;
+  padding:5px 10px;
+}
+.notice{
+  background:rgba(22,35,58,.85) !important;
+  color:#cbd5e1;
+}
+.total{
+  color:#93c5fd !important;
+  font-weight:900;
+}
+footer{
+  border-top:1px solid var(--border);
+  color:var(--muted);
+}
+
+.order-date-group{display:grid;gap:10px;margin-top:16px}
+.order-date-title{padding:12px 14px;border-radius:12px;background:#0b1526;border:1px solid #2b3b57;color:#dbeafe;font-weight:900}
+</style>
+
+<style id="schedule-ui">
+.schedule-editor{margin-top:14px;padding:14px;border:1px solid var(--border);border-radius:13px;background:#0b1526}.schedule-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 12px}.schedule-day{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:rgba(17,27,46,.94)}.schedule-day-title{padding:13px 15px;font-weight:900;background:#0b1526;border-bottom:1px solid var(--border)}.schedule-row{display:grid;grid-template-columns:75px 1fr auto;gap:12px;align-items:center;padding:13px 15px;border-bottom:1px solid rgba(38,55,83,.7)}.schedule-row:last-child{border-bottom:0}.schedule-time{font-size:18px;font-weight:900;color:#93c5fd;direction:ltr;text-align:center}.schedule-info{min-width:0}.schedule-info span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.schedule-status{font-size:11px;color:#cbd5e1}.schedule-day+.schedule-day{margin-top:12px}@media(max-width:520px){.schedule-fields{grid-template-columns:1fr}.schedule-row{grid-template-columns:60px 1fr}.schedule-status{grid-column:2}}
+
+.persian-date-input{direction:rtl;text-align:right;cursor:pointer}
+.persian-datepicker-container{z-index:99999!important}
+</style>
+
+<style id="leaderboard-ui">
+.page-hidden{display:none!important}
+.bottom-nav{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(430px,calc(100% - 24px));display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:9px;background:rgba(9,16,30,.92);border:1px solid rgba(96,165,250,.22);border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.42),0 0 30px rgba(59,130,246,.10);backdrop-filter:blur(16px);z-index:9998}
+.bottom-nav-btn{border:1px solid rgba(148,163,184,.16);border-radius:16px;padding:12px 10px;background:linear-gradient(135deg,rgba(30,64,175,.34),rgba(15,23,42,.95));color:#eef3f9;font-family:inherit;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.bottom-nav-btn:hover{transform:translateY(-2px);border-color:rgba(96,165,250,.5);box-shadow:0 8px 22px rgba(37,99,235,.18)}
+.bottom-nav-btn.order{background:linear-gradient(135deg,rgba(37,99,235,.72),rgba(29,78,216,.32))}
+.bottom-nav-btn.leader{background:linear-gradient(135deg,rgba(124,58,237,.58),rgba(30,41,59,.9))}
+.bottom-nav-icon{font-size:22px;line-height:1}.bottom-nav-text{font-size:13px}
+body{padding-bottom:92px}
+
+.order-leaderboard{display:grid;gap:10px}
+.leaderboard-row{display:grid;grid-template-columns:52px 1fr auto auto auto;gap:12px;align-items:center;padding:14px 15px;border:1px solid var(--border);border-radius:15px;background:rgba(17,27,46,.94)}
+.leaderboard-rank{font-size:22px;font-weight:900;text-align:center}
+.leaderboard-info{min-width:0}.leaderboard-info b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.leaderboard-info span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+.leaderboard-date{color:#cbd5e1;font-size:12px;white-space:nowrap}.leaderboard-time{font-size:18px;font-weight:900;color:#93c5fd;direction:ltr;white-space:nowrap}.leaderboard-status{font-size:11px;color:#cbd5e1;white-space:nowrap}.leaderboard-delete{padding:6px 10px;border-radius:10px;border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.18);color:#fecaca;font-size:11px;cursor:pointer}\n.leaderboard-row.status-done{border-color:rgba(34,197,94,.7)!important;background:rgba(34,197,94,.12)!important}.leaderboard-row.status-running{border-color:rgba(245,158,11,.7)!important;background:rgba(245,158,11,.12)!important}.leaderboard-row.status-done .leaderboard-status{color:#22c55e;font-weight:900}.leaderboard-row.status-running .leaderboard-status{color:#f59e0b;font-weight:900}
+@media(max-width:700px){.leaderboard-row{grid-template-columns:44px 1fr auto}.leaderboard-date{grid-column:2;font-size:11px}.leaderboard-time{grid-column:3;grid-row:1/3}.leaderboard-status{grid-column:2;font-size:10px}}
+</style>
+
+<style id="shamsi-calendar-ui">
+.shamsi-picker{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:99999;display:none;align-items:center;justify-content:center;padding:16px}
+.shamsi-picker.show{display:flex}
+.shamsi-box{width:min(390px,100%);background:#111b2e;border:1px solid #263753;border-radius:18px;box-shadow:0 20px 60px #0009;padding:15px}
+.shamsi-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.shamsi-head button{width:42px;height:42px;border:1px solid #2b3b57;background:#0b1526;color:#eef3f9;border-radius:10px;cursor:pointer;font-size:20px}
+.shamsi-title{text-align:center;font-weight:900;flex:1}
+.shamsi-week,.shamsi-days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.shamsi-week div{text-align:center;color:#9eacc0;font-size:12px;padding:6px 0}
+.shamsi-day{border:1px solid transparent;background:#0b1526;color:#eef3f9;border-radius:9px;min-height:40px;cursor:pointer}
+.shamsi-day:hover{border-color:#3b82f6;background:#172844}
+.shamsi-day.today{border-color:#3b82f6;color:#93c5fd;font-weight:900}
+.shamsi-day.empty{visibility:hidden;pointer-events:none}
+.shamsi-footer{display:flex;gap:8px;margin-top:12px}
+.shamsi-footer button{flex:1}
+</style>
+
+<style id="premium-glass-ui">
+:root{
+  --bg:#07111f;
+  --panel:rgba(17,29,47,.58);
+  --panel2:rgba(25,40,61,.48);
+  --border:rgba(203,213,225,.16);
+  --text:#f3f6fa;
+  --muted:#aeb9c8;
+  --accent:#d6b46a;
+  --accent2:#b98b3e;
+  --shadow:0 18px 55px rgba(0,0,0,.34);
+}
+body{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(214,180,106,.10),transparent 28%),
+    radial-gradient(circle at 10% 20%,rgba(96,165,250,.08),transparent 30%),
+    linear-gradient(180deg,#07111f 0%,#0a1422 52%,#08111d 100%);
+}
+header{background:rgba(7,17,31,.62)!important;border-bottom:1px solid rgba(255,255,255,.10)!important;backdrop-filter:blur(22px) saturate(140%)!important;-webkit-backdrop-filter:blur(22px) saturate(140%);}
+.hero,.card,.order,.modal-box,.notice,.schedule-day,.leaderboard-row{
+  background:linear-gradient(135deg,rgba(255,255,255,.095),rgba(255,255,255,.035))!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  backdrop-filter:blur(20px) saturate(125%);
+  -webkit-backdrop-filter:blur(20px) saturate(125%);
+}
+.hero{border-radius:24px!important;}
+.section-title{color:#f7f1e4!important;font-weight:900;}
+.price,.total{color:#e4c77f!important;}
+input,select,textarea{
+  background:rgba(5,13,24,.48)!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+input:focus,select:focus,textarea:focus{border-color:rgba(214,180,106,.7)!important;box-shadow:0 0 0 3px rgba(214,180,106,.10)!important;}
+.btn{
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.045))!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.08)!important;
+  backdrop-filter:blur(14px);
+}
+.btn:hover{border-color:rgba(214,180,106,.55)!important;box-shadow:0 10px 28px rgba(0,0,0,.26),0 0 18px rgba(214,180,106,.08)!important;}
+.btn:not(.secondary):not(.red){background:linear-gradient(135deg,rgba(214,180,106,.88),rgba(161,118,49,.88))!important;color:#101722!important;border-color:rgba(255,231,173,.42)!important;}
+.btn.secondary{color:#e7edf5!important;}
+.bottom-nav{
+  background:rgba(8,18,31,.58)!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:0 20px 60px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.09)!important;
+  backdrop-filter:blur(24px) saturate(150%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(150%);
+}
+.bottom-nav-btn{
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07)!important;
+}
+.bottom-nav-btn.order{background:linear-gradient(135deg,rgba(214,180,106,.30),rgba(255,255,255,.055))!important;}
+.bottom-nav-btn.leader{background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(255,255,255,.055))!important;}
+.bottom-nav-btn:hover{border-color:rgba(214,180,106,.48)!important;}
+.bottom-nav-icon{filter:drop-shadow(0 2px 6px rgba(0,0,0,.35));}
+.leaderboard-rank{color:#e4c77f;}
+.leaderboard-time,.schedule-time{color:#dbeafe!important;}
+.status{background:rgba(214,180,106,.12)!important;color:#e7c979!important;border:1px solid rgba(214,180,106,.24);}
+footer{border-top:1px solid rgba(255,255,255,.10)!important;}
+</style>
+
+
+<style id="final-glass-polish">
+:root{
+ --bg:#07121f;
+ --official-glass:rgba(255,255,255,.075);
+ --official-border:rgba(255,255,255,.18);
+ --gold:#d8b86a;
+}
+body{
+ background:
+ radial-gradient(circle at 20% 0%,rgba(216,184,106,.16),transparent 30%),
+ radial-gradient(circle at 90% 20%,rgba(59,130,246,.12),transparent 35%),
+ linear-gradient(180deg,#07121f,#0b1728)!important;
+}
+.hero,.card,.order,.modal-box,.notice,.schedule-day,.leaderboard-row,.kpi{
+ background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045))!important;
+ border:1px solid var(--official-border)!important;
+ backdrop-filter:blur(24px) saturate(150%)!important;
+ -webkit-backdrop-filter:blur(24px) saturate(150%)!important;
+ box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+.section-title,h1,h3{color:#f8fafc!important}
+.hero h1 span,.price,.total,.leaderboard-rank{color:var(--gold)!important}
+.btn:not(.secondary):not(.red){
+ background:linear-gradient(135deg,#e1c47d,#a8792f)!important;
+ color:#101827!important;
+}
+.btn.secondary{background:rgba(255,255,255,.08)!important;color:#fff!important}
+input,select,textarea{
+ background:rgba(5,12,22,.45)!important;
+ border-color:rgba(255,255,255,.16)!important;
+}
+.bottom-nav{
+ background:rgba(7,18,31,.55)!important;
+ backdrop-filter:blur(28px)!important;
+ border-color:rgba(255,255,255,.18)!important;
+}
+.bottom-nav-btn{background:rgba(255,255,255,.07)!important}
+</style>
+
+
+<style id="premium-dashboard-v3">
+:root{--lux:#d4af37;--ice:#f8fafc}
+body{background:radial-gradient(circle at top,rgba(212,175,55,.12),transparent 28%),linear-gradient(180deg,#050b16,#0b1628)!important}
+.hero,.card,.order,.modal-box,.notice,.schedule-day,.leaderboard-row,.kpi{border-radius:24px!important;backdrop-filter:blur(28px) saturate(160%)!important;-webkit-backdrop-filter:blur(28px) saturate(160%)!important;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.035))!important;border:1px solid rgba(255,255,255,.18)!important;box-shadow:0 25px 70px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.12)!important}
+.brand span,.price,.total,.leaderboard-rank{color:#e7c96b!important}
+.btn:not(.secondary):not(.red){background:linear-gradient(135deg,#e7c96b,#a67c22)!important;color:#101722!important}
+.btn{min-height:44px!important;letter-spacing:.2px}
+input,select,textarea{background:rgba(255,255,255,.06)!important;border-radius:16px!important}
+.bottom-nav{border-radius:30px!important}
+.section-title{font-size:23px!important}
+</style>
+
+<style id="ios-liquid-polish">
+/* iOS inspired liquid glass refinement */
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Tahoma,sans-serif!important;
+  letter-spacing:-.15px;
+}
+header{
+  border-radius:0 0 22px 22px;
+}
+.hero{
+  overflow:hidden;
+  position:relative;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  width:260px;height:260px;
+  top:-100px;left:-70px;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 65%);
+  pointer-events:none;
+}
+.card,.order,.modal-box,.notice,.schedule-day,.leaderboard-row,.kpi{
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+}
+.card:hover,.order:hover,.kpi:hover,.leaderboard-row:hover{
+  transform:translateY(-4px);
+}
+.btn{
+  transition:all .25s cubic-bezier(.2,.8,.2,1)!important;
+  overflow:hidden;
+  position:relative;
+}
+.btn:active{
+  transform:scale(.96)!important;
+}
+input,select,textarea{
+  min-height:48px;
+  transition:all .25s ease!important;
+}
+textarea{line-height:1.8}
+.badge{
+  backdrop-filter:blur(14px);
+}
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.section-title:before{
+  content:"";
+  width:5px;height:25px;
+  border-radius:99px;
+  background:linear-gradient(#e7c96b,#fff);
+}
+.bottom-nav{
+  animation:floatNav 4s ease-in-out infinite;
+}
+@keyframes floatNav{
+  50%{transform:translateX(-50%) translateY(-5px)}
+}
+@media(max-width:600px){
+  .hero h1{font-size:36px!important}
+  .card,.order{padding:17px!important}
+  .bottom-nav{bottom:12px}
+}
+</style>
+<style>
+.price-editor{display:grid;grid-template-columns:1fr 130px;gap:10px;align-items:center;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.price-editor input{margin:0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="brand"> <span>CODM_ACCOUNTQ</span> </div>
+    <div class="navlinks">
+      <button class="btn secondary hide-mobile" onclick="scrollToId('tariffs')">تعرفه‌ها</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero container">
+  <span class="badge">سفارش تبلیغات روبیکا</span>
+  <h1>تبلیغت رو <span>حرفه‌ای</span> منتشر کن</h1>
+  <p>سفارش تبلیغات کانال <b>𝒄𝒐𝒅𝒎_𝒂𝒄𝒄𝒐𝒖𝒏𝒕𝑸</b> به‌صورت آنلاین. سرویس موردنظر را انتخاب کن، اطلاعاتت را وارد کن و سفارش را ثبت کن.</p>
+  <div class="actions" style="justify-content:center;margin-top:22px">
+    <button class="btn" onclick="scrollToId('order')"> سفارش تبلیغ</button>
+    <a class="btn secondary" style="text-decoration:none" href="https://rubika.ir/Codm_accountQ" target="_blank"> ورود به کانال</a>
+  </div>
+</section>
+
+<section id="tariffs" class="section container">
+  <div class="section-title">تعرفه‌های تبلیغات</div>
+  <div id="tariffGrid" class="grid"></div>
+</section>
+
+<section id="order" class="section container">
+  <div class="section-title"> ثبت سفارش</div>
+  <div class="order-wrap">
+    <div class="card">
+      <h3>اطلاعات سفارش</h3>
+      <label>نوع تبلیغ</label>
+      <select id="service"></select>
+
+      <label>آیدی روبیکا</label>
+      <input id="rubikaId" placeholder="@username">
+
+      <label>نام مشتری</label>
+      <input id="customerName" placeholder="نام شما" readonly>
+
+      <label>متن تبلیغ</label>
+      <textarea id="adText" placeholder="متن یا توضیحات تبلیغ را وارد کنید..."></textarea>
+
+      <div id="replyWrap" class="hidden">
+        <label>ریپلای خود را وارد کنید</label>
+        <textarea id="replyText" style="min-height:90px" placeholder="متن ریپلای را وارد کنید..."></textarea>
+      </div>
+
+
+      <button class="btn" style="width:100%;margin-top:15px" onclick="submitOrder()">ثبت سفارش</button>
+    </div>
+
+    <div class="card">
+      <h3>خلاصه سفارش</h3>
+      <div class="small">سرویس انتخاب‌شده</div>
+      <p id="selectedName">—</p>
+      <div class="small">مبلغ قابل پرداخت</div>
+      <div class="total" id="total">۰ تومان</div>
+      <div class="notice" style="margin-top:18px">
+        پس از ثبت سفارش، شماره سفارش نمایش داده خواهد شد.
+      </div>
+
+      <div class="notice" style="margin-top:18px">
+        <b>💳 پرداخت سفارش</b>
+        <p style="margin:10px 0">
+          شماره کارت: <strong id="cardNumber">6219861352892391</strong>
+        </p>
+        <p style="margin:10px 0">
+          کد سفارش: <strong id="paymentOrderCode">بعد از ثبت سفارش نمایش داده می‌شود</strong>
+        </p>
+        <div class="actions">
+          <button class="btn secondary" onclick="copyCard()">📋 کپی شماره کارت</button>
+          <button class="btn secondary" onclick="copyOrderCode()">📋 کپی کد سفارش</button>
+          <a class="btn green send-receipt-btn" href="https://rubika.ir/support_chanel_bot" target="_blank" style="text-decoration:none">✅ رسید پرداخت و کد سفارش را برای بات ارسال کنید</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="myOrders" class="section container">
+  <div id="customerNotice" class="notice hidden" style="margin-bottom:15px;font-size:15px;font-weight:800"></div>
+  <div class="section-title"> سفارش‌های ثبت‌شده روی این دستگاه</div>
+  <div id="orders" class="orders"></div>
+</section>
+
+
+
+<section id="admin" class="section container admin-panel">
+  <div class="section-title"> پنل مدیریت</div>
+  <div class="card">
+    <div class="kpis">
+      <div class="kpi"><span class="small">کل سفارش‌ها</span><b id="kpiOrders">۰</b></div>
+      <div class="kpi"><span class="small">در انتظار</span><b id="kpiPending">۰</b></div>
+      <div class="kpi"><span class="small">مجموع مبالغ</span><b id="kpiMoney">۰</b></div>
+    </div>
+    <h3 style="margin-top:25px">مدیریت تعرفه‌ها</h3>
+<div id="priceManager" class="orders"></div>
+<button class="btn" style="margin-top:12px" onclick="savePrices()">ذخیره تغییرات قیمت‌ها</button>
+<h3 style="margin-top:25px">مدیریت سفارش‌ها</h3>
+    <div id="adminOrders" class="orders"></div>
+    <div class="actions">
+      <button class="btn red" onclick="clearOrders()">حذف همه سفارش‌های محلی</button>
+      <button class="btn secondary" onclick="logoutAdmin()">خروج از مدیریت</button>
+    </div>
+  </div>
+</section>
+
+<section id="leaderboardPage" class="section container page-hidden">
+  <div class="section-title">🏆 لیدربرد سفارش‌ها</div>
+  <div class="card">
+    <div class="small" style="margin-bottom:15px">سفارش‌ها بر اساس زودترین زمان انجام مرتب شده‌اند.</div>
+    <div id="orderLeaderboard" class="order-leaderboard"></div>
+    <button class="btn secondary" style="margin-top:16px" onclick="showHome()">← بازگشت به صفحه اصلی</button>
+  </div>
+</section>
+</main>
+
+
+<div class="bottom-nav" aria-label="منوی اصلی">
+  <button class="bottom-nav-btn order" onclick="goToOrder()">
+    <span class="bottom-nav-icon">🛒</span><span class="bottom-nav-text">ثبت سفارش</span>
+  </button>
+  <button class="bottom-nav-btn leader" onclick="showLeaderboard()">
+    <span class="bottom-nav-icon">🏆</span><span class="bottom-nav-text">لیدربرد</span>
+  </button>
+</div>
+
+<footer>
+  <div> 𝒄𝒐𝒅𝒎_𝒂𝒄𝒄𝒐𝒖𝒏𝒕𝑸</div>
+  <div class="small" style="margin-top:8px">Rubika: @Codm_accountQ</div>
+  <button class="btn secondary" style="margin-top:15px" onclick="openAdmin()">ورود مدیریت</button>
+</footer>
+
+
+<div id="paymentModal" class="modal">
+  <div class="modal-box">
+    <h3>💳 پرداخت سفارش</h3>
+    <p class="small">لطفاً مبلغ سفارش را به شماره کارت زیر واریز کنید.</p>
+    <div class="notice" style="margin:15px 0">
+      شماره کارت:<br>
+      <b id="payCard" style="font-size:22px;letter-spacing:2px">6219861352892391</b>
+      <br><br>
+      کد سفارش:<br>
+      <b id="payOrderCode" style="font-size:18px">بعد از ثبت سفارش نمایش داده می‌شود</b>
+    </div>
+    <div class="actions">
+      <button class="btn secondary" onclick="copyPaymentCard()">📋 کپی شماره کارت</button>
+      <button class="btn secondary" onclick="copyOrderCode()">📋 کپی کد سفارش</button>
+      <a class="btn green send-receipt-btn" href="https://rubika.ir/support_chanel_bot" target="_blank" style="text-decoration:none">✅ رسید پرداخت و کد سفارش را برای بات ارسال کنید</a>
+      <button class="btn" onclick="closePayment()">ادامه</button>
+    </div>
+  </div>
+</div>
+
+<div id="adminModal" class="modal">
+  <div class="modal-box">
+    <h3> ورود مدیریت</h3>
+    <p class="small">برای مدیریت، با حساب مدیر وارد شوید.</p>
+    <input id="adminEmail" type="email" placeholder="ایمیل مدیر">
+    <input id="adminPass" type="password" placeholder="رمز ورود مدیر">
+    <div id="adminError" class="small" style="color:#ef4444;margin-top:10px"></div>
+    <div class="actions">
+      <button class="btn" onclick="loginAdmin()">ورود</button>
+      <button class="btn secondary" onclick="closeAdmin()">لغو</button>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+const SUPABASE_URL="https://wrzpposaqjbksgunkxqh.supabase.co";
+const SUPABASE_KEY="sb_publishable_lOLpHug6vDnEEi2Wfn5PRQ_obC5bKK6";
+const ADMIN_EMAIL="i22300081@gmail.com";
+let firebaseReady=false,currentUser=null,orders=[],pollTimer=null,lastPaymentOrder="";
+let services=[
+{id:1,name:"تبلیغ عادی بدون ریپلای",price:75000,reply:false},{id:2,name:"تبلیغ عادی با ریپلای دلخواه",price:100000,reply:true},{id:3,name:"پست آخر ۱۲ ساعته بدون ریپلای",price:135000,reply:false},{id:4,name:"پست آخر ۱۲ ساعته با ریپلای دلخواه",price:167000,reply:true},{id:5,name:"پست آخر با سنجاق ۱۲ ساعت بدون ریپلای",price:150000,reply:false},{id:6,name:"پست آخر با سنجاق و ریپلای دلخواه ۱۲ ساعته",price:180000,reply:true},{id:7,name:"تبلیغ ۱۲ ساعت عادی بدون ریپلای",price:90000,reply:false},{id:8,name:"تبلیغ ۲۴ ساعت عادی بدون ریپلای",price:120000,reply:false},{id:9,name:"تبلیغ ۲۴ ساعت با ریپلای دلخواه",price:150000,reply:true},{id:10,name:"تبلیغ ۲۴ ساعته با سنجاق بدون ریپلای",price:180000,reply:false},{id:11,name:"تبلیغ ۲۴ ساعته با ریپلای و سنجاق",price:250000,reply:true},{id:12,name:"تبلیغ ۲۴ ساعته بدون سنجاق با ریپلای",price:190000,reply:true}
+];
+const toman=n=>new Intl.NumberFormat("fa-IR").format(Number(n||0))+" تومان";
+const num=n=>new Intl.NumberFormat("fa-IR").format(Number(n||0));
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+function copyTextSafe(text,message="کپی شد."){const t=document.createElement("textarea");t.value=text;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.focus();t.select();try{document.execCommand("copy");alert("✅ "+message)}catch(e){alert(text)}t.remove()}
+function copyCard(){copyTextSafe("6219861352892391","شماره کارت کپی شد.")}
+function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth"})}
+function renderServices(){const g=document.getElementById("tariffGrid"),s=document.getElementById("service");g.innerHTML="";s.innerHTML='<option value="">انتخاب کنید...</option>';services.forEach(x=>{g.innerHTML+=`<div class="card tariff"><div><div class="small">پکیج تبلیغاتی</div><h3>${esc(x.name)}</h3></div><div><div class="price">${toman(x.price)}</div><button class="btn" onclick="choose(${x.id})">انتخاب این پکیج</button></div></div>`;s.innerHTML+=`<option value="${x.id}">${esc(x.name)} — ${toman(x.price)}</option>`});s.onchange=updateTotal;updateTotal()}
+function choose(id){document.getElementById("service").value=id;updateTotal();scrollToId("order")}
+function updateTotal(){const s=services.find(x=>x.id===Number(document.getElementById("service").value));document.getElementById("selectedName").textContent=s?s.name:"—";document.getElementById("total").textContent=s?toman(s.price):"۰ تومان";document.getElementById("replyWrap").classList.toggle("hidden",!s?.reply);if(!s?.reply)document.getElementById("replyText").value=""}
+function sbHeaders(extra={}){return {apikey:SUPABASE_KEY,"Content-Type":"application/json",...(currentUser?.accessToken?{Authorization:"Bearer "+currentUser.accessToken}:{}),...extra}}
+async function sbAuthFetch(path,options={}){const r=await fetch(`${SUPABASE_URL}/auth/v1/${path}`,{...options,headers:sbHeaders(options.headers||{})});const d=await r.json().catch(()=>({}));if(!r.ok){const e=new Error(d?.msg||d?.error_description||d?.message||d?.error||`HTTP ${r.status}`);e.code=d?.error||d?.code||String(r.status);throw e}return d}
+function saveSession(){if(currentUser?.refreshToken)localStorage.setItem("codm_supabase_session",JSON.stringify({uid:currentUser.uid,email:currentUser.email||null,refreshToken:currentUser.refreshToken}))}
+function clearSession(){localStorage.removeItem("codm_supabase_session")}
+async function signInEmail(email,password){const d=await sbAuthFetch("token?grant_type=password",{method:"POST",body:JSON.stringify({email,password})});currentUser={uid:d.user?.id||d.user_id,email:d.user?.email||email,accessToken:d.access_token,refreshToken:d.refresh_token||""};saveSession();return currentUser}
+async function refreshSupabaseToken(refreshToken){const d=await sbAuthFetch("token?grant_type=refresh_token",{method:"POST",body:JSON.stringify({refresh_token:refreshToken})});currentUser={uid:d.user?.id||d.user_id,email:d.user?.email||null,accessToken:d.access_token,refreshToken:d.refresh_token||refreshToken};saveSession();return currentUser}
+async function signInAnonymous(){let saved=null;try{saved=JSON.parse(localStorage.getItem("codm_supabase_session")||"null")}catch(e){}if(saved?.refreshToken){try{return await refreshSupabaseToken(saved.refreshToken)}catch(e){clearSession()}}const d=await sbAuthFetch("signup",{method:"POST",body:JSON.stringify({})});if(!d.access_token)throw new Error("ANONYMOUS_AUTH_NOT_ENABLED");currentUser={uid:d.user?.id,email:d.user?.email||null,accessToken:d.access_token,refreshToken:d.refresh_token||""};saveSession();return currentUser}
+function signOut(){currentUser=null;clearSession();stopPolling();document.getElementById("admin").classList.remove("show");orders=[];renderOrders()}
+function authErrorMessage(code){const map={invalid_credentials:"ایمیل یا رمز ورود مدیر اشتباه است.",email_not_confirmed:"ایمیل مدیر هنوز تأیید نشده است.",user_not_found:"حساب مدیر پیدا نشد.",anonymous_provider_disabled:"ورود مهمان در Supabase فعال نیست.",ANONYMOUS_AUTH_NOT_ENABLED:"ورود مهمان در Supabase فعال نیست."};return map[code]||("خطای ورود: "+code)}
+async function sbFetch(path,options={}){if(!currentUser?.accessToken)throw new Error("NOT_AUTHENTICATED");const r=await fetch(`${SUPABASE_URL}/rest/v1/${path}`,{...options,headers:sbHeaders(options.headers||{})});const d=await r.json().catch(()=>null);if(!r.ok){const e=new Error(d?.message||d?.msg||d?.hint||d?.error||`HTTP ${r.status}`);e.httpStatus=r.status;throw e}return d}
+function fromDbOrder(x){return{id:x.id,uid:x.uid,service:x.service,price:Number(x.price||0),rubika:x.rubika,name:x.name,text:x.ad_text||"",scheduleDate:x.schedule_date||"",scheduleTime:String(x.schedule_time||"").slice(0,5),reply:x.reply||"",status:x.status||"در انتظار بررسی",createdAt:x.created_at?new Date(x.created_at).toLocaleString("fa-IR"):""}}
+async function addOrder(order){const row={uid:order.uid,service:order.service,price:order.price,rubika:order.rubika,name:order.name,ad_text:order.text,schedule_date:null,schedule_time:null,reply:order.reply||"",status:order.status||"در انتظار بررسی"};const d=await sbFetch("orders?select=id",{method:"POST",headers:{Prefer:"return=representation"},body:JSON.stringify(row)});if(!Array.isArray(d)||!d[0]?.id)throw new Error("شناسه سفارش دریافت نشد.");return d[0].id}
+async function getOrders(){if(!currentUser)return[];let path="orders?select=*&order=created_at.desc";if(currentUser.email!==ADMIN_EMAIL)path+=`&uid=eq.${encodeURIComponent(currentUser.uid)}`;const d=await sbFetch(path);return(Array.isArray(d)?d:[]).map(fromDbOrder).sort((a,b)=>scheduleSortValue(a).localeCompare(scheduleSortValue(b))||String(b.createdAt||"").localeCompare(String(a.createdAt||"")))}
+async function updateOrderStatus(id,status){await sbFetch(`orders?id=eq.${encodeURIComponent(id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({status})})}
+async function deleteOrder(id){await sbFetch(`orders?id=eq.${encodeURIComponent(id)}`,{method:"DELETE"})}
+async function refreshOrders(showError=false){try{orders=await getOrders();renderOrders();if(currentUser?.email===ADMIN_EMAIL)await renderAdmin()}catch(e){console.error("Supabase:",e);if(showError)alert("خواندن سفارش‌ها انجام نشد.\n"+(e.message||"خطای سیستم"))}}
+function startPolling(){stopPolling();refreshOrders();pollTimer=setInterval(()=>refreshOrders(false),5000)}
+function stopPolling(){if(pollTimer){clearInterval(pollTimer);pollTimer=null}}
+async function ensureCustomerAuth(){if(currentUser?.accessToken)return true;try{await signInAnonymous();return!!currentUser?.accessToken}catch(e){console.error("Customer Supabase auth:",e);alert("اتصال به سرویس برقرار نشد.\n"+authErrorMessage(e.code||e.message||"UNKNOWN_ERROR"));return false}}
+function copyOrderCode(){const code=lastPaymentOrder||localStorage.getItem("lastPaymentOrder")||"";if(!code)return alert("هنوز کد سفارش ایجاد نشده است.");copyTextSafe(code,"کد سفارش کپی شد.")}
+function enableReceiptButton(orderId){lastPaymentOrder=orderId;document.getElementById("paymentOrderCode")?.replaceChildren(document.createTextNode(orderId));document.getElementById("payOrderCode")?.replaceChildren(document.createTextNode(orderId));localStorage.setItem("lastPaymentOrder",orderId);document.querySelectorAll(".send-receipt-btn").forEach(btn=>{btn.style.pointerEvents="auto";btn.style.opacity="1";btn.href="https://rubika.ir/support_chanel_bot?text="+encodeURIComponent(`سلام\nرسید پرداخت سفارش من:\n\nشماره سفارش: ${orderId}\n\nلطفاً رسید پرداخت را بررسی کنید.`)})}
+function restoreReceiptButton(){const oldOrder=localStorage.getItem("lastPaymentOrder");if(oldOrder)enableReceiptButton(oldOrder)}
+function ensureCustomerName(){let saved=localStorage.getItem("customerDisplayName");if(!saved)return false;const el=document.getElementById("customerName");if(el){el.value=saved;el.readOnly=true;}return true}
+
+function requestFirstName(){
+  let saved=localStorage.getItem("customerDisplayName");
+  if(saved){
+    const el=document.getElementById("customerName");
+    if(el){ el.value=saved; el.readOnly=true; }
+    return;
+  }
+  setTimeout(()=>{
+    let name=prompt("برای ورود اول یک اسم برای خود انتخاب کنید:");
+    if(name && name.trim()){
+      name=name.trim();
+      localStorage.setItem("customerDisplayName",name);
+      const el=document.getElementById("customerName");
+      if(el) el.value=name;
+    }else{
+      requestFirstName();
+    }
+  },400);
+}
+async function submitOrder(){try{if(!await ensureCustomerAuth())return;if(!ensureCustomerName())return;const serviceEl=document.getElementById("service"),rubikaEl=document.getElementById("rubikaId"),nameEl=document.getElementById("customerName"),textEl=document.getElementById("adText"),replyEl=document.getElementById("replyText"),s=services.find(x=>x.id===Number(serviceEl.value)),rubika=rubikaEl.value.trim(),name=nameEl.value.trim(),text=textEl.value.trim(),reply=replyEl.value.trim();if(!s||!rubika||!name||!text)return alert("لطفاً نوع تبلیغ، آیدی روبیکا، نام و متن تبلیغ را کامل کنید.");if(!rubika.startsWith("@"))return alert("آیدی روبیکا باید با @ شروع شود. مثال: @username");if(s.reply&&!reply)return alert("این پکیج ریپلای دارد؛ لطفاً ریپلای خود را وارد کنید.");openPayment();const id=await addOrder({uid:currentUser.uid,service:s.name,price:s.price,rubika,name,text,scheduleDate:"",scheduleTime:"",reply:s.reply?reply:"",status:"در انتظار بررسی"});[rubikaEl,nameEl,textEl,replyEl].forEach(x=>x.value="");serviceEl.value="";updateTotal();await refreshOrders(false);enableReceiptButton(id);alert("سفارش با موفقیت ثبت شد.\nشناسه سفارش: "+id+"\n\nاکنون می‌توانید رسید پرداخت را ارسال کنید.");scrollToId("myOrders")}catch(e){console.error("submitOrder:",e);let msg="ثبت سفارش انجام نشد.";if(e.message==="NOT_AUTHENTICATED")msg="کاربر وارد نشده است.";else if(e.message)msg+="\n"+e.message;alert(msg)}}
+function copyUserInfo(id){
+  const o = orders.find(x => x.id === id);
+  if(!o) return alert("اطلاعات سفارش پیدا نشد.");
+
+  const info =
+`آیدی روبیکا: ${o.rubika || ""}
+متن تبلیغ:
+${o.text || ""}
+${o.reply ? `\nریپلای:\n${o.reply}` : ""}`;
+
+  navigator.clipboard.writeText(info).then(()=>{
+    alert("✅ اطلاعات کپی شد.");
+  }).catch(()=>{
+    const ta=document.createElement("textarea");
+    ta.value=info;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    alert("✅ اطلاعات کپی شد.");
+  });
+}
+
+function formatScheduleDate(v){
+  if(!v) return "تعیین نشده";
+  const m=String(v).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!m) return String(v);
+  const d=new Date(Number(m[1]),Number(m[2])-1,Number(m[3]));
+  try{return new Intl.DateTimeFormat("fa-IR-u-ca-persian",{year:"numeric",month:"long",day:"numeric"}).format(d);}
+  catch(e){return String(v);}
+}
+
+function scheduleSortValue(o){
+  if(!o.scheduleDate) return "9999-12-31T23:59";
+  return `${o.scheduleDate}T${o.scheduleTime||"23:59"}`;
+}
+
+function orderHtml(o,a){
+  return `<div class="order">
+    <div class="order-head"><b>${esc(o.id)}</b><span class="status">${esc(o.status)}</span></div>
+    <div class="small" style="margin-top:8px">ثبت: ${esc(o.createdAt||"")}</div>
+    <p><b>تاریخ انجام:</b> ${esc(formatScheduleDate(o.scheduleDate))} ${o.scheduleTime?` — ${esc(o.scheduleTime)}`:""}</p>
+    <p><b>پکیج:</b> ${esc(o.service)}</p>
+    <p><b>مشتری:</b> ${esc(o.name)} — ${esc(o.rubika)}</p>
+    <p><b>مبلغ:</b> ${toman(o.price)}</p>
+    <p style="white-space:pre-wrap"><b>متن:</b> ${esc(o.text)}</p>
+    ${o.reply?`<p style="white-space:pre-wrap"><b>ریپلای:</b> ${esc(o.reply)}</p>`:""}
+    ${a?`<div class="actions">
+      <button class="btn" onclick="copyUserInfo('${esc(o.id)}')">کپی اطلاعات کاربر</button>
+      <button class="btn green" onclick="setStatus('${esc(o.id)}','تأیید شد')">تأیید</button>
+      <button class="btn secondary" onclick="setStatus('${esc(o.id)}','در حال اجرا')">در حال اجرا</button>
+      <button class="btn red" onclick="setStatus('${esc(o.id)}','لغو شد')">لغو</button>
+    </div>
+    <div class="schedule-editor">
+      <div class="small">تعیین زمان انجام توسط مدیریت</div>
+      <div class="schedule-fields">
+        <div><label>تاریخ انجام</label><input type="text" class="persian-date-input" id="sd-${esc(o.id)}" value="${esc(gregorianToJalali(o.scheduleDate||""))}" data-gregorian="${esc(o.scheduleDate||"")}" placeholder="انتخاب تاریخ شمسی" readonly onclick="openShamsiPicker(this)"></div>
+        <div><label>ساعت انجام</label><input type="time" id="st-${esc(o.id)}" value="${esc(o.scheduleTime||"")}"></div>
+      </div>
+      <button class="btn" onclick="saveSchedule('${esc(o.id)}')">ذخیره تاریخ و ساعت</button>
+    </div>`:""}
+  </div>`;
+}
+
+
+
+/* ---------- Persian (Jalali) calendar: self-contained/offline ---------- */
+const JALALI_MONTHS=["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"];
+let shamsiTarget=null, shamsiYear=0, shamsiMonth=0;
+
+function div(a,b){return Math.floor(a/b);}
+
+function jalaliToGregorian(jy,jm,jd){
+  let gy;
+  if(jy>979){gy=1600; jy-=979;} else {gy=621;}
+  let days=365*jy + div(jy+3,4) + 78 + jd;
+  if(jm<7) days += (jm-1)*31;
+  else days += (jm-7)*30 + 186;
+  gy += 400*div(days,146097);
+  days %= 146097;
+  if(days>36524){
+    gy += 100*div(--days,36524);
+    days %= 36524;
+    if(days>=365) days++;
+  }
+  gy += 4*div(days,1461);
+  days %= 1461;
+  if(days>365){
+    gy += div(days-1,365);
+    days=(days-1)%365;
+  }
+  let gd=days+1;
+  const leap=((gy%4===0 && gy%100!==0)||gy%400===0);
+  const gdm=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+  let gm=1;
+  while(gd>gdm[gm-1]){gd-=gdm[gm-1];gm++;}
+  return [gy,gm,gd];
+}
+
+function gregorianToJalali(gy,gm,gd){
+  let jy;
+  if(gy>1600){jy=979;gy-=1600;}else{jy=0;gy-=621;}
+  const leap=((gy%4===0 && gy%100!==0)||gy%400===0);
+  const gdm=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+  let days=365*gy+div(gy+3,4)-div(gy+99,100)+div(gy+399,400);
+  for(let i=0;i<gm-1;i++) days+=gdm[i];
+  days+=gd-1;
+  days-=80;
+  jy+=33*div(days,12053); days%=12053;
+  jy+=4*div(days,1461); days%=1461;
+  if(days>365){jy+=div(days-1,365);days=(days-1)%365;}
+  let jm, jd;
+  if(days<186){jm=1+div(days,31);jd=1+days%31;}
+  else{jm=7+div(days-186,30);jd=1+(days-186)%30;}
+  return [jy,jm,jd];
+}
+
+function jalaliDaysInMonth(y,m){
+  if(m<=6)return 31;
+  if(m<=11)return 30;
+  return jalaliToGregorian(y+1,1,1)[2]===21?30:29;
+}
+
+function jalaliWeekday(y,m,d){
+  const g=jalaliToGregorian(y,m,d);
+  const js=new Date(g[0],g[1]-1,g[2]).getDay(); // Sun=0
+  return (js+1)%7; // Sat=0 ... Fri=6
+}
+
+function pad2(n){return String(n).padStart(2,"0");}
+
+function openShamsiPicker(el){
+  shamsiTarget=el;
+  const existing=String(el.value||"").match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+  if(existing){
+    shamsiYear=Number(existing[1]); shamsiMonth=Number(existing[2]);
+  }else{
+    const now=new Date();
+    [shamsiYear,shamsiMonth]=gregorianToJalali(now.getFullYear(),now.getMonth()+1,now.getDate());
+  }
+  renderShamsiCalendar();
+  document.getElementById("shamsiPicker").classList.add("show");
+}
+
+function closeShamsiPicker(){
+  document.getElementById("shamsiPicker").classList.remove("show");
+  shamsiTarget=null;
+}
+
+function changeShamsiMonth(delta){
+  shamsiMonth+=delta;
+  if(shamsiMonth<1){shamsiMonth=12;shamsiYear--;}
+  if(shamsiMonth>12){shamsiMonth=1;shamsiYear++;}
+  renderShamsiCalendar();
+}
+
+function selectShamsiDate(y,m,d){
+  if(!shamsiTarget)return;
+  const g=jalaliToGregorian(y,m,d);
+  shamsiTarget.value=`${y}/${pad2(m)}/${pad2(d)}`;
+  shamsiTarget.dataset.gregorian=`${g[0]}-${pad2(g[1])}-${pad2(g[2])}`;
+  closeShamsiPicker();
+}
+
+function selectShamsiToday(){
+  const now=new Date();
+  const j=gregorianToJalali(now.getFullYear(),now.getMonth()+1,now.getDate());
+  shamsiYear=j[0];shamsiMonth=j[1];
+  selectShamsiDate(j[0],j[1],j[2]);
+}
+
+function renderShamsiCalendar(){
+  document.getElementById("shamsiTitle").textContent=`${JALALI_MONTHS[shamsiMonth-1]} ${shamsiYear}`;
+  const box=document.getElementById("shamsiDays");
+  const first=jalaliWeekday(shamsiYear,shamsiMonth,1);
+  const count=jalaliDaysInMonth(shamsiYear,shamsiMonth);
+  const now=new Date(), tj=gregorianToJalali(now.getFullYear(),now.getMonth()+1,now.getDate());
+  let h="";
+  for(let i=0;i<first;i++) h+='<button type="button" class="shamsi-day empty"></button>';
+  for(let d=1;d<=count;d++){
+    const today=(tj[0]===shamsiYear&&tj[1]===shamsiMonth&&tj[2]===d)?" today":"";
+    h+=`<button type="button" class="shamsi-day${today}" onclick="selectShamsiDate(${shamsiYear},${shamsiMonth},${d})">${d}</button>`;
+  }
+  box.innerHTML=h;
+}
+
+
+function renderOrders(){
+  document.getElementById("orders").innerHTML=orders.length
+    ?orders.map(o=>orderHtml(o,false)).join("")
+    :"<div class=\"card small\">هنوز سفارشی ثبت نشده است.</div>";
+  renderOrderLeaderboard();
+  checkCustomerConfirmation();
+}
+
+function renderOrderLeaderboard(){
+  const box=document.getElementById("orderLeaderboard");
+  if(!box) return;
+  const scheduled=orders.filter(o=>o.scheduleDate&&o.scheduleTime).slice().sort((a,b)=>
+    scheduleSortValue(a).localeCompare(scheduleSortValue(b)) || String(a.createdAt||"").localeCompare(String(b.createdAt||""))
+  );
+  if(!scheduled.length){
+    box.innerHTML='<div class="notice">هنوز زمانی برای هیچ سفارشی تعیین نشده است.</div>';
+    return;
+  }
+  box.innerHTML=scheduled.map((o,i)=>{
+    const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':num(i+1);
+    const rowClass=o.status==="تأیید شد"?" status-done":(o.status==="در حال اجرا"?" status-running":"");
+    return `<div class="leaderboard-row${rowClass}">
+      <div class="leaderboard-rank">${medal}</div>
+      <div class="leaderboard-info"><b>${esc(o.name||"مشتری")}</b><span>${esc(o.service||"")}</span></div>
+      <div class="leaderboard-date">${esc(formatScheduleDate(o.scheduleDate))}</div>
+      <div class="leaderboard-time">${esc(o.scheduleTime||"—")}</div>
+      <div class="leaderboard-status">${o.status==="تأیید شد"?"سفارش انجام شد":esc(o.status||"")}</div>
+      ${currentUser?.email===ADMIN_EMAIL?`<button class="leaderboard-delete" onclick="removeFromLeaderboard('${esc(o.id)}')">حذف</button>`:""}
+    </div>`;
+  }).join("");
+}
+
+
+async function removeFromLeaderboard(id){
+  if(currentUser?.email!==ADMIN_EMAIL) return alert("دسترسی مدیر ندارید.");
+  if(!confirm("این سفارش از لیدربرد حذف شود؟")) return;
+  try{
+    await deleteOrder(id);
+    await refreshOrders(false);
+  }catch(e){
+    alert("حذف سفارش انجام نشد.\n"+(e.message||"خطای سیستم"));
+  }
+}
+
+function showLeaderboard(){
+  document.querySelectorAll('main > section').forEach(el=>el.classList.add('page-hidden'));
+  document.getElementById('leaderboardPage').classList.remove('page-hidden');
+  renderOrderLeaderboard();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showHome(){
+  document.querySelectorAll('main > section').forEach(el=>el.classList.remove('page-hidden'));
+  document.getElementById('leaderboardPage').classList.add('page-hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goToOrder(){
+  showHome();
+  setTimeout(()=>scrollToId('order'),80);
+}
+
+function checkCustomerConfirmation(){
+  const box=document.getElementById("customerNotice");
+  if(!box) return;
+
+  const confirmed=orders.filter(o=>o.status==="تأیید شد");
+
+  if(!confirmed.length){
+    box.classList.add("hidden");
+    box.textContent="";
+    return;
+  }
+
+  const count=confirmed.length;
+  box.textContent=count===1
+    ?"🎉 سفارش شما انجام شد و تأیید شد."
+    :`🎉 ${num(count)} سفارش شما انجام شد و تأیید شد.`;
+  box.classList.remove("hidden");
+
+  // Show a popup when the customer enters/reloads the site.
+  if(!window.__customerConfirmationShown){
+    window.__customerConfirmationShown=true;
+    setTimeout(()=>{
+      alert(count===1
+        ?"🎉 سفارش شما انجام شد."
+        :`🎉 ${num(count)} سفارش شما انجام شد.`);
+    },250);
+  }
+}
+
+async function renderAdmin(){
+  renderPriceManager();
+  const box=document.getElementById("adminOrders");
+  const drafts=await captureScheduleDrafts();
+
+  if(!orders.length){
+    box.innerHTML="<div class=\"small\">سفارشی وجود ندارد.</div>";
+  }else{
+    const sorted=orders.slice().sort((a,b)=>scheduleSortValue(a).localeCompare(scheduleSortValue(b)) || String(b.createdAt||"").localeCompare(String(a.createdAt||"")));
+    box.innerHTML=sorted.map(o=>orderHtml(o,true)).join("");
+    restoreScheduleDrafts(drafts);
+  }
+
+  document.getElementById("kpiOrders").textContent=num(orders.length);
+  document.getElementById("kpiPending").textContent=num(orders.filter(o=>o.status==="در انتظار بررسی").length);
+  document.getElementById("kpiMoney").textContent=toman(orders.reduce((a,o)=>a+Number(o.price||0),0));
+}
+
+async function updateOrderSchedule(id,scheduleDate,scheduleTime){
+  if(currentUser?.email!==ADMIN_EMAIL) throw new Error("ADMIN_ONLY");
+  await sbFetch(`orders?id=eq.${encodeURIComponent(id)}`,{method:"PATCH",headers:{"Prefer":"return=minimal"},body:JSON.stringify({schedule_date:scheduleDate||null,schedule_time:scheduleTime||null})});
+}
+
+async function captureScheduleDrafts(){
+  const drafts={};
+  document.querySelectorAll('[id^="st-"]').forEach(el=>{
+    const id=el.id.slice(3);
+    drafts[id]={...(drafts[id]||{}),time:el.value||""};
+  });
+  document.querySelectorAll('[id^="sd-"]').forEach(el=>{
+    const id=el.id.slice(3);
+    drafts[id]={...(drafts[id]||{}),date:el.value||"",gregorian:el.dataset.gregorian||""};
+  });
+  return drafts;
+}
+
+function restoreScheduleDrafts(drafts){
+  for(const [id,d] of Object.entries(drafts||{})){
+    const timeEl=document.getElementById(`st-${id}`);
+    const dateEl=document.getElementById(`sd-${id}`);
+    if(timeEl && d.time!==undefined) timeEl.value=d.time;
+    if(dateEl && d.date!==undefined){
+      dateEl.value=d.date;
+      if(d.gregorian) dateEl.dataset.gregorian=d.gregorian;
+    }
+  }
+}
+
+async function saveSchedule(id){
+  if(currentUser?.email!==ADMIN_EMAIL) return alert("دسترسی مدیر ندارید.");
+
+  const dateEl=document.getElementById(`sd-${id}`);
+  const timeEl=document.getElementById(`st-${id}`);
+  const date=dateEl?.dataset.gregorian||"";
+  const time=timeEl?.value||"";
+  const btn=timeEl?.closest(".schedule-editor")?.querySelector("button.btn");
+
+  if(!date || !time)
+    return alert("لطفاً تاریخ شمسی و ساعت انجام سفارش را انتخاب کنید.");
+
+  if(btn){
+    btn.disabled=true;
+    btn.textContent="در حال ذخیره...";
+  }
+
+  try{
+    await updateOrderSchedule(id,date,time);
+    await updateOrderStatus(id,"رزرو شده");
+
+    // Verify that the exact values reached Firestore before re-rendering.
+    const fresh=await getOrders();
+    const saved=fresh.find(o=>o.id===id);
+    if(!saved || saved.scheduleDate!==date || saved.scheduleTime!==time){
+      throw new Error("زمان در Firestore ذخیره نشد یا هنوز قابل خواندن نیست.");
+    }
+
+    orders=fresh;
+    renderOrders();
+    if(currentUser?.email===ADMIN_EMAIL) await renderAdmin();
+    alert("تاریخ و ساعت انجام سفارش با موفقیت ذخیره شد.");
+  }catch(e){
+    console.error("saveSchedule:",e);
+    alert("ذخیره زمان انجام نشد.\\n"+(e.message||"خطای سیستم"));
+  }finally{
+    if(btn){
+      btn.disabled=false;
+      btn.textContent="ذخیره تاریخ و ساعت";
+    }
+  }
+}
+
+async function setStatus(id,status){
+  if(currentUser?.email!==ADMIN_EMAIL)
+    return alert("دسترسی مدیر ندارید.");
+  try{
+    if(status==="لغو شد"){
+      await deleteOrder(id);
+    }else{
+      await updateOrderStatus(id,status);
+    }
+    await refreshOrders(false);
+  }catch(e){
+    alert("تغییر وضعیت انجام نشد.\n"+(e.message||"خطای سیستم"));
+  }
+}
+
+async function clearOrders(){
+  if(currentUser?.email!==ADMIN_EMAIL)
+    return alert("دسترسی مدیر ندارید.");
+
+  if(!confirm("همه سفارش‌ها حذف شوند؟")) return;
+
+  try{
+    const list=await getOrders();
+    for(const o of list) await deleteOrder(o.id);
+    await refreshOrders(false);
+    alert("همه سفارش‌ها با موفقیت حذف شدند.");
+  }catch(e){
+    alert("حذف سفارش‌ها انجام نشد.\n"+(e.message||"خطای سیستم"));
+  }
+}
+
+/* ---------- Admin ---------- */
+
+
+function openPayment(){
+  document.getElementById("paymentModal").classList.add("show");
+}
+function closePayment(){
+  document.getElementById("paymentModal").classList.remove("show");
+}
+function copyPaymentCard(){
+  copyTextSafe("6219861352892391", "شماره کارت کپی شد.");
+}
+
+function openAdmin(){
+  document.getElementById("adminModal").classList.add("show");
+  document.getElementById("adminError").textContent="";
+}
+
+function closeAdmin(){
+  document.getElementById("adminModal").classList.remove("show");
+}
+
+async function loginAdmin(){
+  const email=document.getElementById("adminEmail").value.trim(),
+        pass=document.getElementById("adminPass").value,
+        err=document.getElementById("adminError");
+
+  err.textContent="";
+
+  if(email.toLowerCase()!==ADMIN_EMAIL)
+    return err.textContent="ایمیل مدیر صحیح نیست.";
+
+  if(!pass)
+    return err.textContent="رمز را وارد کنید.";
+
+  const btn=document.querySelector("#adminModal .btn:not(.secondary)");
+  if(btn) btn.disabled=true;
+
+  try{
+    await signInEmail(email,pass);
+    if(typeof loadPricingFromCloud==="function") await loadPricingFromCloud();
+    closeAdmin();
+    document.getElementById("admin").classList.add("show");
+    renderAdmin();
+    startPolling();
+    scrollToId("admin");
+  }catch(e){
+    console.error("Admin login:",e);
+    err.textContent=authErrorMessage(e.code||e.message||"UNKNOWN_ERROR");
+  }finally{
+    if(btn) btn.disabled=false;
+  }
+}
+
+async function logoutAdmin(){
+  signOut();
+  try{
+    await signInAnonymous();
+    startPolling();
+  }catch(e){
+    console.warn("Anonymous auth unavailable:",e);
+  }
+}
+
+/* ---------- Start ---------- */
+
+async function init(){
+  renderServices();
+  orders=[];
+  renderOrders();
+
+  // Keep the anonymous identity across visits so the customer
+  // can see the same orders again when reopening this content:// file.
+  try{
+    await signInAnonymous();
+    if(typeof loadPricingFromCloud==="function") await loadPricingFromCloud();
+    await refreshOrders(false);
+    startPolling();
+  }catch(e){
+    console.warn("Anonymous auth unavailable:",e);
+    currentUser=null;
+  }
+}
+
+window.copyUserInfo=copyUserInfo;window.choose=choose;
+window.updateTotal=updateTotal;
+window.submitOrder=submitOrder;
+window.saveSchedule=saveSchedule;
+window.setStatus=setStatus;
+window.removeFromLeaderboard=removeFromLeaderboard;
+window.clearOrders=clearOrders;
+window.openAdmin=openAdmin;
+window.closeAdmin=closeAdmin;
+window.loginAdmin=loginAdmin;
+window.logoutAdmin=logoutAdmin;
+window.scrollToId=scrollToId;
+
+init();
+
+function loadPrices(){
+  try{
+    const saved=JSON.parse(localStorage.getItem("codm_prices"));
+    if(Array.isArray(saved)) services=saved;
+  }catch(e){}
+}
+
+function renderPriceManager(){
+  const box=document.getElementById("priceManager");
+  if(!box) return;
+  box.innerHTML=services.map((x,i)=>`<div class="price-editor"><b>${esc(x.name)}</b><input id="price-${i}" type="number" value="${x.price}" placeholder="قیمت"></div>`).join("");
+}
+
+function savePrices(){
+  services.forEach((x,i)=>{
+    const el=document.getElementById("price-"+i);
+    if(el && Number(el.value)>0) x.price=Number(el.value);
+  });
+  localStorage.setItem("codm_prices",JSON.stringify(services));
+  renderServices();
+  renderPriceManager();
+  if(typeof savePricingToCloud==="function") savePricingToCloud().then(()=>alert("قیمت‌ها ذخیره شد")).catch(e=>alert("قیمت‌ها محلی ذخیره شد؛ ذخیره آنلاین انجام نشد.\n"+(e.message||"خطای سیستم")));
+  else alert("قیمت‌ها ذخیره شد");
+}
+
+loadPrices();
+window.addEventListener("load", ()=>{restoreReceiptButton();requestFirstName();});
+</script>
+
+<div id="shamsiPicker" class="shamsi-picker" onclick="if(event.target===this)closeShamsiPicker()">
+  <div class="shamsi-box" dir="rtl">
+    <div class="shamsi-head">
+      <button type="button" onclick="changeShamsiMonth(-1)">‹</button>
+      <div id="shamsiTitle" class="shamsi-title"></div>
+      <button type="button" onclick="changeShamsiMonth(1)">›</button>
+    </div>
+    <div class="shamsi-week">
+      <div>شنبه</div><div>یکشنبه</div><div>دوشنبه</div><div>سه‌شنبه</div><div>چهارشنبه</div><div>پنجشنبه</div><div>جمعه</div>
+    </div>
+    <div id="shamsiDays" class="shamsi-days"></div>
+    <div class="shamsi-footer">
+      <button type="button" class="btn secondary" onclick="selectShamsiToday()">امروز</button>
+      <button type="button" class="btn secondary" onclick="closeShamsiPicker()">بستن</button>
+    </div>
+  </div>
+</div>
+
+<script id="supabase-pricing-sync">
+(function(){
+ async function cloudSavePrices(){
+  if(!currentUser?.accessToken||currentUser.email!==ADMIN_EMAIL)return;
+  for(const x of services){
+   const r=await fetch(`${SUPABASE_URL}/rest/v1/pricing?id=eq.${encodeURIComponent(x.id)}`,{method:"PATCH",headers:sbHeaders({Prefer:"return=minimal"}),body:JSON.stringify({name:x.name,price:x.price,reply:!!x.reply})});
+   if(!r.ok){const d=await r.json().catch(()=>({}));throw new Error(d.message||d.hint||`HTTP ${r.status}`)}
+  }
+ }
+ async function cloudLoadPrices(){
+  try{const r=await fetch(`${SUPABASE_URL}/rest/v1/pricing?select=id,name,price,reply&order=id.asc`,{headers:{apikey:SUPABASE_KEY}});const rows=await r.json();if(!Array.isArray(rows)||!rows.length)return;rows.forEach(v=>{const x=services.find(s=>s.id===Number(v.id));if(x){x.name=v.name||x.name;x.price=Number(v.price||x.price);x.reply=!!v.reply}});localStorage.setItem("codm_prices",JSON.stringify(services));renderServices();if(currentUser?.email===ADMIN_EMAIL)renderPriceManager()}catch(e){console.log("pricing cloud not ready",e.message)}
+ }
+ window.savePricingToCloud=cloudSavePrices;window.loadPricingFromCloud=cloudLoadPrices;
+})();
+</script>
+</body>
+</html>
